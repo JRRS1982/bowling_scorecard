@@ -1,8 +1,8 @@
 # this is the class comment
 class Game
   def initialize
-    @score_array = [[0,0], [0,0], [0,0], [0,0], [0,0],
-                    [0,0], [0,0], [0,0], [0,0], [0,0]]
+    @score_array = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
+                    [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
     @roll_helper = 0
     @frame_helper = 0
   end
@@ -13,6 +13,10 @@ class Game
 
   def score
     @score_array.flatten.reduce(&:+)
+  end
+
+  def over?
+    true
   end
 
   def roll(pins)

@@ -31,6 +31,7 @@ Should there be any images, please find them in the images folder of the project
 As a bowler,
 I want to get a score of zero when i throw only gutter balls,
 so that my correct score is recorded.
+DONE
 
 As a bowler,
 I want to get a score of 20 when i hit only one pin each time,

@@ -23,4 +23,12 @@ describe 'Game' do
       expect(my_game.frame).to eq(2)
     end
   end
+
+  context '.over?' do
+    it 'ends the game after throwing 20 gutter balls' do
+      my_game = Game.new
+      20.times { my_game.roll(0) }
+      expect(my_game.over?).to be(true)
+    end
+  end
 end
