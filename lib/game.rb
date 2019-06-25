@@ -1,11 +1,8 @@
 # this is the class comment
 class Game
-  attr_accessor :frame_array, :frame_number, :rolls
-
   def initialize
-    @score_array = [[0,0], [0,0]]
-    @frame_number = 1
-    @rolls = []
+    @score_array = [[0,0], [0,0], [0,0], [0,0], [0,0],
+                    [0,0], [0,0], [0,0], [0,0], [0,0]]
     @roll_helper = 0
     @frame_helper = 0
   end
@@ -15,7 +12,7 @@ class Game
   end
 
   def score
-    p @score_array.flatten.reduce(&:+)
+    @score_array.flatten.reduce(&:+)
   end
 
   def roll(pins)

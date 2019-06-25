@@ -16,7 +16,7 @@ describe 'Game' do
       expect(my_game.frame).to eq(2)
     end
 
-    it 'increments up when two balls are that equal 10' do
+    it 'increments up when two balls in the same frame equal 10' do
       my_game = Game.new
       my_game.roll(3)
       my_game.roll(7)

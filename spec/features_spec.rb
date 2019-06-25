@@ -1,14 +1,13 @@
 require 'Game'
 
 describe 'features' do
-  it 'registers a score when pins are knocked down' do
+  it 'keeps track of the correct frame at the start' do
     my_game = Game.new
     my_game.roll(1)
-    my_game.roll(3)
-    expect(my_game.frame).to eq(2)
+    expect(my_game.frame).to eq(1)
   end
 
-  it 'registers a score when pins are knocked down' do
+  it 'increments the frame up' do
     my_game = Game.new
     my_game.roll(1)
     my_game.roll(3)
