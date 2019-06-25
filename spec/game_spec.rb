@@ -1,4 +1,5 @@
 require 'Game'
+require 'pry'
 
 describe 'Game' do
   context '.roll' do
@@ -29,6 +30,11 @@ describe 'Game' do
       my_game = Game.new
       20.times { my_game.roll(0) }
       expect(my_game.over?).to be(true)
+    end
+
+    it 'is not over at the start' do
+      my_game = Game.new
+      expect(my_game.over?).to be(false)
     end
   end
 end
