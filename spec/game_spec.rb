@@ -17,7 +17,7 @@ describe 'Game' do
       expect(my_game.frame).to eq(2)
     end
 
-    it 'increments up when two balls in the same frame equal 10' do
+    it 'increments up when two balls are rolled' do
       my_game = Game.new
       my_game.roll(3)
       my_game.roll(7)
@@ -35,6 +35,20 @@ describe 'Game' do
     it 'is not over at the start' do
       my_game = Game.new
       expect(my_game.over?).to be(false)
+    end
+  end
+
+  context '.strikes' do
+    it 'knows what a strike is' do
+      my_game = Game.new
+      my_game.roll(10)
+      expect(my_game.a_strike?(my_game.score_array[0])).to be(true)
+    end
+
+    it "knows what a strike isn't" do
+      my_game = Game.new
+      my_game.roll(4)
+      expect(my_game.a_strike?(my_game.score_array[0])).to be(false)
     end
   end
 end
