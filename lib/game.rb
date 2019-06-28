@@ -35,6 +35,15 @@ class Game
     end
   end
 
+  def a_spare?(array_of_two_rolls)
+    temp_total = array_of_two_rolls[0] +  array_of_two_rolls[1]
+    if temp_total == 10
+      return true
+    else
+      return false
+    end
+  end
+
   def roll(pins)
     @score_array[@frame_helper][@roll_helper] = pins
     @roll_helper += 1

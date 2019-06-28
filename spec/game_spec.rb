@@ -38,7 +38,7 @@ describe 'Game' do
     end
   end
 
-  context '.strikes' do
+  context '.a_strike?' do
     it 'knows what a strike is' do
       my_game = Game.new
       my_game.roll(10)
@@ -49,6 +49,22 @@ describe 'Game' do
       my_game = Game.new
       my_game.roll(4)
       expect(my_game.a_strike?(my_game.score_array[0])).to be(false)
+    end
+  end
+
+  context '.a_spare?' do
+    it 'knows what a spare is' do
+      my_game = Game.new
+      my_game.roll(3)
+      my_game.roll(7)
+      expect(my_game.a_spare?(my_game.score_array[0])).to be(true)
+    end
+
+    it "knows what a spare isn't" do
+      my_game = Game.new
+      my_game.roll(3)
+      my_game.roll(2)
+      expect(my_game.a_spare?(my_game.score_array[0])).to be(false)
     end
   end
 end
