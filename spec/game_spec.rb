@@ -81,4 +81,11 @@ describe 'Game' do
       expect(my_game.score).to eq(20)
     end
   end
+
+  context '.statement' do
+    it 'prints out a heading' do
+      my_game = Game.new
+      expect(my_game.statement).to include("Frame || Roll 1 || Roll 2 || Frame Score || Total")
+    end
+  end
 end

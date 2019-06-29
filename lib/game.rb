@@ -38,4 +38,12 @@ class Game
       @roll_helper = 0
     end
   end
+
+  def statement_heading
+    'Frame || Roll 1 || Roll 2 || Frame Score || Total'
+  end
+
+  def statement
+    statement_heading
+  end
 end
