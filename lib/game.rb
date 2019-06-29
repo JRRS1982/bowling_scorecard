@@ -1,4 +1,4 @@
-# this is the class comment
+# first step, creating a game class to hold the data we will need.
 class Game
   attr_reader :score_array
 
@@ -14,11 +14,7 @@ class Game
   end
 
   def over?
-    if frame > 10
-      true
-    else
-      false
-    end
+    frame > 10
   end
 
   def score
@@ -26,22 +22,12 @@ class Game
   end
 
   def a_strike?(array_of_two_rolls)
-    array_of_two_rolls.each do |first, second|
-      if first == 10
-        return true
-      else
-        return false
-      end
-    end
+    array_of_two_rolls[0] == 10
   end
 
   def a_spare?(array_of_two_rolls)
-    temp_total = array_of_two_rolls[0] +  array_of_two_rolls[1]
-    if temp_total == 10
-      return true
-    else
-      return false
-    end
+    temp_total = array_of_two_rolls[0] + array_of_two_rolls[1]
+    temp_total == 10
   end
 
   def roll(pins)

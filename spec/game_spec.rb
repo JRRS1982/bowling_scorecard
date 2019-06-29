@@ -67,4 +67,18 @@ describe 'Game' do
       expect(my_game.a_spare?(my_game.score_array[0])).to be(false)
     end
   end
+
+  context '.score' do
+    it 'keeps track of a zero score' do
+      my_game = Game.new
+      20.times { my_game.roll(0) }
+      expect(my_game.score).to eq(0)
+    end
+
+    it 'keeps track of a 1 each time' do
+      my_game = Game.new
+      20.times { my_game.roll(1) }
+      expect(my_game.score).to eq(20)
+    end
+  end
 end
