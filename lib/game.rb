@@ -4,7 +4,7 @@ class Game
 
   def initialize
     @score_array = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
-                    [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+                    [0, 0], [0, 0], [0, 0], [0, 0], [0, 0, 0]]
     @roll_helper = 0
     @frame_helper = 0
     @score_helper = 0
@@ -21,13 +21,16 @@ class Game
   end
 
   def score
+    @score_helper = 0
+    @spare_helper = 0
+    @strike_helper = 0
     @score_array.each.with_index do |item, index|
       if a_strike?(item)
-        @strike_helper += calculate_strike_bonus(index)
+        @strike_helper = calculate_strike_bonus(index)
         @score_helper += item.flatten.reduce(&:+)
         @score_helper += @strike_helper
       elsif a_spare?(item)
-        @spare_helper += calculate_spare_bonus(index)
+        @spare_helper = calculate_spare_bonus(index)
         @score_helper += item.flatten.reduce(&:+)
         @score_helper += @spare_helper
       else
@@ -51,7 +54,8 @@ class Game
   def roll(pins)
     @score_array[@frame_helper][@roll_helper] = pins
     @roll_helper += 1
-    if @roll_helper == 2 || pins == 10
+    if @score_array[10]
+    elsif @roll_helper == 2 || pins == 10
       @frame_helper += 1
       @roll_helper = 0
     end
@@ -61,11 +65,30 @@ class Game
     statement_heading
   end
 
-  private
+  def reset_score_array
+    @score_array = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
+                    [0, 0], [0, 0], [0, 0], [0, 0], [0, 0, 0]]
+  end
+
+  def calculate_strike_bonus(current_score_array_index)
+    strike_bonus = 0
+    #get the score of the next two rolls
+    strike_bonus += @score_array[current_score_array_index += 1][0]
+    strike_bonus += @score_array[current_score_array_index][1]
+    #if the score of the next roll is a strike check the score calculate that
+    
+    
+    # if a_strike?(current_score_array_index)
+    #   calculate_strike_bonus(current_score_array_index)
+    # end
+    strike_bonus
+  end
 
   def calculate_spare_bonus(current_score_array_index)
     @score_array[current_score_array_index += 1][0]
   end
+
+  private
 
   def statement_heading
     'Frame || Roll 1 || Roll 2 || Frame Score || Total'

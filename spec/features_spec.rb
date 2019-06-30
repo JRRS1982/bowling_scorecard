@@ -1,4 +1,5 @@
 require 'Game'
+require 'pry'
 
 describe 'features' do
   it 'keeps track of the correct frame at the start' do

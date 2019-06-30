@@ -11,13 +11,13 @@ describe 'Game' do
   end
 
   context '.frame' do
-    it 'increments up when a ten is rolled' do
+    it 'up when a ten is rolled' do
       my_game = Game.new
       my_game.roll(10)
       expect(my_game.frame).to eq(2)
     end
 
-    it 'increments up when two balls are rolled' do
+    it 'up after two balls' do
       my_game = Game.new
       my_game.roll(3)
       my_game.roll(7)
@@ -26,26 +26,26 @@ describe 'Game' do
   end
 
   context '.over?' do
-    it 'ends the game after throwing 20 gutter balls' do
+    it '20 gutter balls' do
       my_game = Game.new
       20.times { my_game.roll(0) }
       expect(my_game.over?).to be(true)
     end
 
-    it 'is not over at the start' do
+    it 'not at the start' do
       my_game = Game.new
       expect(my_game.over?).to be(false)
     end
   end
 
   context '.a_strike?' do
-    it 'knows what a strike is' do
+    it 'strike is' do
       my_game = Game.new
       my_game.roll(10)
       expect(my_game.a_strike?(my_game.score_array[0])).to be(true)
     end
 
-    it "knows what a strike isn't" do
+    it "strike isn't" do
       my_game = Game.new
       my_game.roll(4)
       expect(my_game.a_strike?(my_game.score_array[0])).to be(false)
@@ -53,14 +53,14 @@ describe 'Game' do
   end
 
   context '.a_spare?' do
-    it 'knows what a spare is' do
+    it 'spare is' do
       my_game = Game.new
       my_game.roll(3)
       my_game.roll(7)
       expect(my_game.a_spare?(my_game.score_array[0])).to be(true)
     end
 
-    it "knows what a spare isn't" do
+    it "spare isn't" do
       my_game = Game.new
       my_game.roll(3)
       my_game.roll(2)
@@ -69,7 +69,7 @@ describe 'Game' do
   end
 
   context '.spare_bonus' do
-    it 'checks against spares' do
+    it 'spares' do
       my_game = Game.new
       my_game.roll(2)
       my_game.roll(8)
@@ -77,7 +77,7 @@ describe 'Game' do
       expect(my_game.score).to be(20)
     end
 
-    it 'checks against a different spare' do
+    it 'different spare' do
       my_game = Game.new
       my_game.roll(2)
       my_game.roll(8)
@@ -85,24 +85,43 @@ describe 'Game' do
       expect(my_game.score).to be(16)
     end
 
-    it 'checks against a spare in a different frame' do
+    it 'a different frame' do
       my_game = Game.new
       4.times { my_game.roll(1) }
       my_game.roll(2)
       my_game.roll(8)
       my_game.roll(5)
-      expect(my_game.score).to be(24)
+      expect(my_game.score).to eq(24)
+    end
+  end
+
+  context '.strike_bonus' do
+    it 'a srike' do
+      my_game = Game.new
+      my_game.roll(10)
+      my_game.roll(2)
+      my_game.roll(3)
+      my_game.roll(1)
+      expect(my_game.score).to eq(21)
+    end
+
+    it 'double srike' do
+      my_game = Game.new
+      my_game.roll(10)
+      my_game.roll(10)
+      16.times { my_game.roll(0) }
+      expect(my_game.score).to eq(30)
     end
   end
 
   context '.score' do
-    it 'keeps track of a zero score' do
+    it 'zero score' do
       my_game = Game.new
       20.times { my_game.roll(0) }
       expect(my_game.score).to eq(0)
     end
 
-    it 'keeps track of a 1 each time' do
+    it '1 each time' do
       my_game = Game.new
       20.times { my_game.roll(1) }
       expect(my_game.score).to eq(20)
