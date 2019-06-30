@@ -69,12 +69,29 @@ describe 'Game' do
   end
 
   context '.spare_bonus' do
-    it 'backwards checks against spares' do
+    it 'checks against spares' do
       my_game = Game.new
       my_game.roll(2)
       my_game.roll(8)
       my_game.roll(5)
       expect(my_game.score).to be(20)
+    end
+
+    it 'checks against a different spare' do
+      my_game = Game.new
+      my_game.roll(2)
+      my_game.roll(8)
+      my_game.roll(3)
+      expect(my_game.score).to be(16)
+    end
+
+    it 'checks against a spare in a different frame' do
+      my_game = Game.new
+      4.times { my_game.roll(1) }
+      my_game.roll(2)
+      my_game.roll(8)
+      my_game.roll(5)
+      expect(my_game.score).to be(24)
     end
   end
 

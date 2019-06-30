@@ -8,6 +8,8 @@ class Game
     @roll_helper = 0
     @frame_helper = 0
     @score_helper = 0
+    @strike_helper = 0
+    @spare_helper = 0
   end
 
   def frame
@@ -19,17 +21,21 @@ class Game
   end
 
   def score
-    @score_array.each_with_index do |item, index|
+    @score_array.each.with_index do |item, index|
       if a_strike?(item)
+        @strike_helper += calculate_strike_bonus(index)
         @score_helper += item.flatten.reduce(&:+)
-        @score_helper += reverse_strike_bonus(@score_array[index])
+        @score_helper += @strike_helper
       elsif a_spare?(item)
+        @spare_helper += calculate_spare_bonus(index)
         @score_helper += item.flatten.reduce(&:+)
-        @score_helper += reverse_spare_bonus(@score_array[index])
+        @score_helper += @spare_helper
       else
         @score_helper += item.flatten.reduce(&:+)
       end
     end
+    @strike_helper = 0
+    @spare_helper = 0
     @score_helper
   end
 
@@ -57,8 +63,8 @@ class Game
 
   private
 
-  def reverse_spare_bonus(score_array_with_index)
-    5
+  def calculate_spare_bonus(current_score_array_index)
+    @score_array[current_score_array_index += 1][0]
   end
 
   def statement_heading
