@@ -68,6 +68,16 @@ describe 'Game' do
     end
   end
 
+  context '.spare_bonus' do
+    it 'backwards checks against spares' do
+      my_game = Game.new
+      my_game.roll(2)
+      my_game.roll(8)
+      my_game.roll(5)
+      expect(my_game.score).to be(20)
+    end
+  end
+
   context '.score' do
     it 'keeps track of a zero score' do
       my_game = Game.new
