@@ -112,6 +112,15 @@ describe 'Game' do
       16.times { my_game.roll(0) }
       expect(my_game.score).to eq(30)
     end
+
+    it 'triple strike' do
+      my_game = Game.new
+      my_game.roll(10)
+      my_game.roll(10)
+      my_game.roll(10)
+      14.times { my_game.roll(0) }
+      expect(my_game.score).to eq(60)
+    end
   end
 
   context '.score' do

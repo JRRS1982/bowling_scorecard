@@ -99,5 +99,8 @@ WHAT FURTHER FEATURES WOULD I ADD IF I HAD MORE TIME?
 
 No contributions are required at this time, as this is a training exercise.
 
+I  used this website to help with quick math calculations on scoring.
+https://www.easycalculation.com/sports/bowling-score-calculator.php
+
 I created this code by myself with no exteral assistance, or tutorials, although
 I had to look up how to score a strike and a spare!

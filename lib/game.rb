@@ -75,9 +75,14 @@ class Game
     #get the score of the next two rolls
     strike_bonus += @score_array[current_score_array_index += 1][0]
     strike_bonus += @score_array[current_score_array_index][1]
+    
+    if @score_array[current_score_array_index][0] == 10
+      strike_bonus += @score_array[current_score_array_index += 1][0]
+      strike_bonus += @score_array[current_score_array_index][1]
+    end
+
     #if the score of the next roll is a strike check the score calculate that
-    
-    
+
     # if a_strike?(current_score_array_index)
     #   calculate_strike_bonus(current_score_array_index)
     # end
